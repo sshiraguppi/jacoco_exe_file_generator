@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>TestJacoco</groupId>
+	<artifactId>TestJacoco</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.jacoco</groupId>
+			<artifactId>org.jacoco.core</artifactId>
+			<version>0.7.4.201502262128</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jacoco</groupId>
+			<artifactId>org.jacoco.agent</artifactId>
+			<version>0.7.2.201409121644</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.2.201409121644</version>
+				<configuration>
+					<fileSets>
+						<!-- Implementation attribute not needed in Maven 3 -->
+						<fileSet implementation="org.apache.maven.shared.model.fileset.FileSet">
+							<directory>C:\BeansTalk\Jococo\TestJacoco\TestJacoco</directory>
+
+							<includes>
+								<include>*.exec</include>
+							</includes>
+						</fileSet>
+					</fileSets>
+					<task>
+					<configuration>
+                <outputDirectory>${project.build.directory}/src/blahhere</outputDirectory>
+                <overwrite>true</overwrite>
+                <resources>
+                    <resource>
+                        <directory>${project.build.directory}/jacoco-merged/merged.exec</directory>
+                        <includes>
+                            <include>appCtx.xml</include>
+                        </includes>
+                    </resource>
+                </resources>
+            </configuration>
+					
+					</task>
+					<!-- File containing the merged data -->
+					<destFile>${project.build.directory}/jacoco-merged/merged.exec</destFile>
+				</configuration>
+
+			</plugin>
+
+		</plugins>
+	</build>
+</project>
